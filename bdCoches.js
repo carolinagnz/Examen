@@ -50,18 +50,19 @@ const newsContainer = document.getElementById('newsContainer');
 let htmlCoches = '';
 
 // Bucle para generar el HTML de cada tarjeta: itera sobre cada 'coche' dentro del array bd
-bd.forEach(coche => {
+for (let i = 0; i < bd.length; i++) {
+    const coche = bd[i];
     // Dentro de las comillas invertidas, se puede escribir HTML plano y se pueden incrustar variables JavaScript usando ${variable}
     htmlCoches += `
         <div class="targete">
             <img src="${coche.foto}" alt="${coche.nombre} foto">
-            <h2 class="cocheNombre">${coche.nombre}</h2>
+            <p class="cocheNombre">${coche.nombre}</p>
             <p class="cocheContenido">${coche.potencia}</p>
             <p class="cocheContenido">${coche.motor}</p>
             
         </div>
     `;
-});
+};
 
 // Insercion del HTML generado: asigna todo el string 'htmlCoches' (que contiene todas las tarjetas) como contenido HTML dentro del 'newsContainer'
 
