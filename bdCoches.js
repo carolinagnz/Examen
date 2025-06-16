@@ -8,7 +8,7 @@ const coche1 = {
 
 const coche2 = {
     id: 2,
-    foto: "imagenes/cohce2.png",
+    foto: "imagenes/coche2.png", 
     nombre: "Koenigsegg Jesko",
     potencia: "Potència: 1.600+ cavalls de força",
     motor: "Motor: V8 de 5.0 litres",
@@ -22,14 +22,13 @@ const coche3 = {
     motor: "Motor: V8 de 6.6 litres",
 }
 
-
 const coche4 = {
     id: 4,
     foto: "imagenes/coche4.png",
     nombre: "Rimac C_Two",
     potencia: "Potència: 1.900+ cavalls de força",
     motor: "Motor: Elèctric",
-    }
+}
 
 const coche5 = {
     id: 5,
@@ -39,21 +38,44 @@ const coche5 = {
     motor: "Motor: V12 híbrid",
 }
 
-
 const bd = [coche1, coche2, coche3, coche4, coche5];
 
-const container = document.getElementById('news-container');
-bd.forEach(coche => {
-    const cocheHTML = `
-        <article>
-            <a href="detalleCoche.html?id=${coche.id}"><img src=${coche.foto}></a>
-            <div>
-                <a href="detalleCoche.html?id=${coche.id}"><h1>${coche.nombre}</h1></a>
-                <p>${coche.potencia}</p>
-                <p>${coche.motor}</p>
-                <a href="detalleCoche.html?id=${coche.id}">Ver mas</a>
-            </div>
-        </article>
-    `;
-    container.innerHTML += cocheHTML;
+
+const newsContainer = document.getElementById('newsContainer');
+
+function createCard(coche) { 
+    const cocheCard = document.createElement('div');
+    cocheCard.classList.add('targete');
+
+    const cocheFoto = document.createElement('img');
+    
+    cocheFoto.src = coche.foto;
+    cocheFoto.alt = `${coche.nombre} foto`; 
+
+    const cocheNombre = document.createElement('p'); 
+    cocheNombre.classList.add('cocheNombre');
+    cocheNombre.textContent = coche.nombre; 
+
+    const cochePotencia = document.createElement('p');
+    
+    cochePotencia.classList.add('cocheContenido');
+    cochePotencia.textContent = coche.potencia; 
+
+    const cocheMotor = document.createElement('p');
+    
+    cocheMotor.classList.add('cocheContenido');
+    cocheMotor.textContent = coche.motor; 
+
+    cocheCard.appendChild(cocheFoto);
+    cocheCard.appendChild(cocheNombre);
+    cocheCard.appendChild(cochePotencia);
+    cocheCard.appendChild(cocheMotor);
+
+    return cocheCard;
+}
+
+
+bd.forEach(coche => { 
+    const card = createCard(coche);
+    newsContainer.appendChild(card);
 });

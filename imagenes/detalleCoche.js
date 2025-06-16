@@ -42,25 +42,17 @@ const coche5 = {
 
 const bd = [coche1, coche2, coche3, coche4, coche5];
 
-const container = document.getElementById('new-detailed');
+const container = document.getElementById('news-container');
 
-const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get('id'));
-
-const coche = bd.find(n => n.id === id);
-
-if(coche){
+for(coche=1; coche<6; coche++){
     container.innerHTML = `
-        <article>
-            <img src=${coche.foto}>
+        <div>
+            <a><img src=${coche.foto}></a>
             <div>
-                <h1>${coche.nombre}</h1>
-                <p>${coche.potencia}</p>   
-                <p>${coche.motor}</p>              
+                <p class="cocheNombre"><strong>${coche.nombre}</strong></p>
+                <p class="cocheContenido">${coche.potencia}</p>
+                <p class="cocheContenido">${coche.motor}</p>                
             </div>
-        </article>
+        </div>
     `;
-}else{
-
-    container.innerHTML = "<p>Coche no encontrado</p>"
 }
